@@ -1,0 +1,45 @@
+public class Card{
+
+   int rank;
+   String suit;   
+   public Card(int cardrank, String cardsuit)
+   {
+      rank = cardrank;
+      suit = cardsuit;
+   }
+   
+   public void setSuit(String st)
+   {
+      suit = st;
+   }
+   
+   public int getRank()
+   {
+      return rank;
+   }
+   
+   
+   public String getSuit(){
+      return suit;
+   }
+       
+   public String getBoth()
+   {
+      return rank + suit;
+   }
+   
+   
+   public boolean equals(Card card)
+   {
+      if (rank == card.rank && suit == card.suit)
+      {
+         return true;
+      }
+      
+      else 
+      {
+         return false;
+      }
+   }
+   
+}
