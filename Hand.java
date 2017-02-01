@@ -33,4 +33,41 @@ public class Hand
    {
    hand.clear();
    }
+   
+   public String printHand()
+   {
+      String thisHand = "";
+      
+      for (int i = 0; i < hand.size(); i++)
+      {
+         thisHand = thisHand + hand.get(i).getBoth() + ", ";
+      }
+      return thisHand;
+   }
+
+   public int handValue()
+   {    
+      int value = 0;
+      boolean containsAce = false;
+       for (int i = 0; i < hand.size(); i++)
+        { 
+         if (hand.get(i).getRank()==1)
+            {
+             containsAce = true;
+            }
+         if (hand.get(i).getRank()<10)
+            {
+             value = value + hand.get(i).getRank();
+            }
+         else
+            {
+             value = value + 10;
+            }
+        }
+       if (containsAce = true&& value <12)
+         {
+          value = value + 10;
+          }
+        return value;
+   }
 }

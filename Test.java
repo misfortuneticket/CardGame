@@ -7,10 +7,12 @@ class Test
    {
       Deck deck  = new Deck();
       Hand hand1 = new Hand();
-      
+      deck.Shuffle();
       hand1.addCard(deck.dealCard());
-      
-      System.out.println();
-      System.out.println(deck.printAll());      
+      hand1.addCard(deck.dealCard());
+                  
+      System.out.println(hand1.printHand()); 
+      System.out.println(hand1.handValue());
+     
 	}
 }

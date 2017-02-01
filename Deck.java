@@ -43,7 +43,7 @@ public class Deck
       
       for (int i = 0; i < deck.size(); i++)
       {
-         wholeDeck = wholeDeck + ", " + deck.get(i).getBoth();
+         wholeDeck = wholeDeck + deck.get(i).getBoth() + ", ";
       }
       return wholeDeck;
    }
