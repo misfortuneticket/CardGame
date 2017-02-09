@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Hand
 {
+  int value = 0;
   public ArrayList<Card> hand = new ArrayList<Card>();
 
    public Hand() 
@@ -46,28 +47,34 @@ public class Hand
    }
 
    public int handValue()
-   {    
-      int value = 0;
-      boolean containsAce = false;
+   {    value = 0;
+
+       boolean containsAce = false;
        for (int i = 0; i < hand.size(); i++)
         { 
          if (hand.get(i).getRank()==1)
             {
              containsAce = true;
+             value = value + 10;
             }
          if (hand.get(i).getRank()<10)
             {
              value = value + hand.get(i).getRank();
             }
-         else
+         if (hand.get(i).getRank()>=10)
             {
              value = value + 10;
             }
         }
-       if (containsAce = true&& value <12)
-         {
-          value = value + 10;
-          }
         return value;
+   }
+   
+   public int returnValue()
+   {
+   return value;
+   }
+   public void setValue(int v)
+   {
+   v = value;
    }
 }
