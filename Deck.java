@@ -27,16 +27,15 @@ public class Deck
    
    public void Shuffle()
    {
-   Collections.shuffle(deck);
+       Collections.shuffle(deck);
    }
    
    
    public Card getTopCard()
    {
-      return deck.get(0);
+        return deck.get(0);
    }
-   
-   
+  
    public String printAll()
    {
       String wholeDeck = "";

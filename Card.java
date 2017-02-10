@@ -1,7 +1,8 @@
-public class Card{
-
+public class Card
+{
    int rank;
-   String suit;   
+   String suit; 
+   
    public Card(int cardrank, String cardsuit)
    {
       rank = cardrank;
@@ -17,29 +18,15 @@ public class Card{
    {
       return rank;
    }
-   
-   
-   public String getSuit(){
+    
+   public String getSuit()
+   {
       return suit;
    }
        
    public String getBoth()
    {
       return rank + suit;
-   }
-   
-   
-   public boolean equals(Card card)
-   {
-      if (rank == card.rank && suit == card.suit)
-      {
-         return true;
-      }
-      
-      else 
-      {
-         return false;
-      }
    }
    
 }
