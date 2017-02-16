@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 
 class Test
 {
@@ -21,12 +25,10 @@ class Test
       
       ///////////////////////////////////////////
       //         takes player names
-      System.out.println("Player 1 Enter Name:");
-      String nameinput1 = System.console().readLine();
+      String nameinput1 = JOptionPane.showInputDialog(null, "Player 1, What's your name?");
       Player player1 = new Player(nameinput1);
       
-      System.out.println("Player 2 Enter Name:");
-      String nameinput2 = System.console().readLine();
+      String nameinput2 = JOptionPane.showInputDialog(null, "Player 2, What's your name?");
       Player player2 = new Player(nameinput2);
       
       
@@ -34,38 +36,40 @@ class Test
       ///////////////////////////////////////////
       //        player 1's turn
        
-      PrintHandStatus(hand1,player1);
-      System.out.println("Would you like another card? (Y/N)");      
-      String input1 = System.console().readLine();
-      
+      JOptionPane.showMessageDialog(null,player1.playerName()+"'s Hand: "+hand1.printHand()+"\nHand Value: "+hand1.handValue());
+      int input1=JOptionPane.showOptionDialog(null,"Would you like another card?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+
       while (gameOver1 == false)
       {   
-          if (input1.equals("Y")||input1.equals("y"))
+
+          if (input1==JOptionPane.YES_OPTION)
           {
               hand1.addCard(deck.dealCard());
-              PrintHandStatus(hand1,player1);
-              
-              if (hand1.handValue()>=21)
-              {
+              JOptionPane.showMessageDialog(null,player1.playerName()+"'s Hand: "+hand1.printHand()+"\nHand Value: "+hand1.handValue());
+
+              if (hand1.handValue()>21)
+              {   
+                  JOptionPane.showMessageDialog(null,"hand Value: "+hand1.handValue()+"BUST");
                   gameOver1 = true;
-                  input1 = "N";
+                  input1 =JOptionPane.NO_OPTION;
               }
+              
+              if (hand1.handValue()==21)
+              {   
+                  JOptionPane.showMessageDialog(null,"BLACKJACK!!!");
+                  gameOver1 = true;
+                  input1 =JOptionPane.NO_OPTION;
+              }
+              
               if (hand1.handValue()<21) 
               {
-                  System.out.println("Would you like another card? (Y/N)");  
-                  input1 = System.console().readLine();
+              input1=   JOptionPane.showOptionDialog(null," Would you like another card?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
               }
           }
           
-          if (input1.equals("N")||input1.equals("n")) 
+          else if (input1 == JOptionPane.NO_OPTION) 
           {
               gameOver1 = true;
-          }
-          
-          else 
-          {
-              System.out.println("Invalid response");
-              System.out.println("Would you like another card? (Y/N)");  
           }
 
           if (gameOver1 == true)
@@ -82,43 +86,41 @@ class Test
        
       if (gameOver1 == true)
       {   
-          String n = System.console().readLine();
-          PrintHandStatus(hand2,player2);
-          System.out.println("Player 2, Would you like another card? (Y/N)");  
-          String input2 = System.console().readLine();
+          JOptionPane.showMessageDialog(null,player2.playerName()+"'s Hand: "+hand2.printHand()+"\nHand Value: "+hand2.handValue());
+          int input2=JOptionPane.showOptionDialog(null," Would you like another card?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+
           while (gameOver2 == false)
           {   
 
-              if (input2.equals("Y")||input2.equals("y"))
-              {
+              if (input2==JOptionPane.YES_OPTION)
+              {   
                   hand2.addCard(deck.dealCard());
-                  PrintHandStatus(hand2,player2);
-              
-                  if (hand2.handValue()>=21)
+                  JOptionPane.showMessageDialog(null,player2.playerName()+"'s Hand: "+hand2.printHand()+"\nHand Value: "+hand2.handValue());
+
+                  if (hand2.handValue()>21)
                   {
-                      gameOver2 = true;
-                      input2 = "N";
+                       JOptionPane.showMessageDialog(null,"hand Value: "+hand1.handValue()+"BUST");
+                       input2 = JOptionPane.NO_OPTION;
+                       gameOver2 = true;
                   }
                   
+                  if (hand2.handValue()==21)
+                  {   
+                       JOptionPane.showMessageDialog(null,"BLACKJACK!!!");
+                       gameOver2 = true;
+                       input2 =JOptionPane.NO_OPTION;
+                  }
                   if (hand2.handValue()<21) 
                   {
-                      System.out.println("Would you like another card? (Y/N)");  
-                      input2 = System.console().readLine();
+                       input2 = JOptionPane.showOptionDialog(null," Would you like another card?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);                  }
                   }
-              }
           
           
-              if (input2.equals("N")||input2.equals("n")) 
+              else if (input2==JOptionPane.NO_OPTION) 
               {
                   gameOver2 = true;
               }
                
-               
-              else 
-              {
-                  System.out.println("Invalid response");
-                  System.out.println("Would you like another card? (Y/N)");  
-              }
            }
 
           if (gameOver2 == true)
@@ -133,60 +135,32 @@ class Test
       //      when the game is over    
       if (gameOver1==true && gameOver2==true)
       { 
-          String n = System.console().readLine();
-          System.out.println("");
-          System.out.println(nameinput1 + "'s score: " + player1.getScore());
-          System.out.println(nameinput2 + "'s score: " + player2.getScore());
-          System.out.println("");
+          JOptionPane.showMessageDialog(null,nameinput1 + "'s score: " + player1.getScore());
+          JOptionPane.showMessageDialog(null,nameinput2 + "'s score: " + player2.getScore());
          
           if (player1.getScore()<=21&&player1.getScore()>player2.getScore())
           {
-              System.out.println(player1.playerName()+" WINS!!!!!");
+              JOptionPane.showMessageDialog(null,player1.playerName()+" WINS!!!!!");
           }
           if (player2.getScore()>21&&player1.getScore()<=21)
           {
-              System.out.println(player1.playerName()+" WINS!!!!!");
+              JOptionPane.showMessageDialog(null,player1.playerName()+" WINS!!!!!");
           }
           if (player2.getScore()<=21&&player1.getScore()<player2.getScore())
           {
-              System.out.println(player2.playerName()+" WINS!!!!!");
+              JOptionPane.showMessageDialog(null,player2.playerName()+" WINS!!!!!");
           }
           if (player1.getScore()>21&&player2.getScore()<=21)
           {
-              System.out.println(player2.playerName()+" WINS!!!!!");
+              JOptionPane.showMessageDialog(null,player2.playerName()+" WINS!!!!!");
           }
           if ((player1.getScore()==player2.getScore()&&player1.getScore()<=21&&player2.getScore()<=21)||(player2.getScore()>21&&player1.getScore()>21))
           {
-              System.out.println("IT'S A TIE");
+              JOptionPane.showMessageDialog(null,"IT'S A TIE");
           }
       }
   } 
    
    
-      ///////////////////////////////////////////
-      //        PrintHandStatus()
-      private static void PrintHandStatus(Hand hand, Player player)
-      { 
-         System.out.println(" ");
-         System.out.println(player.playerName() + "'s Hand:"); 
-         System.out.println(hand.printHand());
-         System.out.println("Total Value:"); 
-         System.out.println(hand.handValue());
-       
-         if (hand.handValue()>=22)  
-         {
-             System.out.println("BUST");
-             System.out.println(hand.handValue());
-         }
-      
-         if (hand.handValue()==21)
-         {
-          System.out.println("BLACKJACK"); 
       }
-   }
-
-
-
-
-}
 
