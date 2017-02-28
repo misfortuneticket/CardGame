@@ -11,7 +11,8 @@ class Test
    
    public static void main(String[] args) 
    {
-
+      ///////////////////////////////////////////
+      //         setup
       Deck deck  = new Deck();
       deck.Shuffle();
       
@@ -26,6 +27,8 @@ class Test
       boolean gameOver1 = false;
       boolean gameOver2 = false;
       boolean wholeGameOver = false;
+      
+      
       ///////////////////////////////////////////
       //         takes player names
       String nameinput1 = JOptionPane.showInputDialog(null, "Player 1, What's your name?");
@@ -39,6 +42,8 @@ class Test
       ///////////////////////////////////////////
       //        player 1's turn
    while (wholeGameOver == false)   {
+    
+      //re-setup
       gameOver1 = false;
       gameOver2 = false;
 
@@ -90,8 +95,7 @@ class Test
           if (gameOver1 == true)
           {
               player1.setScore(hand1.handValue());
-          }
-         
+          }       
       }
       
  
@@ -134,8 +138,7 @@ class Test
               else if (input2==JOptionPane.NO_OPTION) 
               {
                   gameOver2 = true;
-              }
-               
+              }  
            }
 
           if (gameOver2 == true)
@@ -153,6 +156,7 @@ class Test
           JOptionPane.showMessageDialog(null,nameinput1 + "'s score: " + player1.getScore());
           JOptionPane.showMessageDialog(null,nameinput2 + "'s score: " + player2.getScore());
          
+         // evaluates who won
           if (player1.getScore()<=21&&player1.getScore()>player2.getScore())
           {
               JOptionPane.showMessageDialog(null,player1.playerName()+" WINS!!!!!");
@@ -180,6 +184,8 @@ class Test
           
           JOptionPane.showMessageDialog(null,player1.playerName()+"'s score:"+player1.getfin()+"\n"+player2.playerName()+"'s score:"+player2.getfin());
           int again=JOptionPane.showOptionDialog(null,"Would you like to play again?","",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null, null, null);
+          
+          // when the whole game is over
           if (again == JOptionPane.NO_OPTION)
           {
                 JOptionPane.showMessageDialog(null,"And the winner is.....");
@@ -195,13 +201,10 @@ class Test
                   {
                    JOptionPane.showMessageDialog(null,"It's a tie.");
                   }
-                 wholeGameOver = true;
-           
+               wholeGameOver = true;      
           }
       }
     }
-  }
-   
-   
+  }   
 }
 
